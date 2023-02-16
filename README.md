@@ -9,7 +9,7 @@
 </p>
 
 
-![cover](.github/cover.PNG?style=flat)
+![cover](.github/cover.png?style=flat)
 
 
 

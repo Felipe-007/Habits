@@ -1,7 +1,9 @@
-import { Text, View, StatusBar } from 'react-native';
+import './src/lib/dayjs';  ////define o portugues como padrão
+
+import { StatusBar } from 'react-native';
 import { useFonts, Inter_400Regular, Inter_600SemiBold, Inter_700Bold, Inter_800ExtraBold } from '@expo-google-fonts/inter';
 import { Loading } from './src/components/Loading';
-import { styles } from "./styles";
+import { Home } from './src/screens/Home';
 
 export default function App() {
 
@@ -12,7 +14,7 @@ export default function App() {
     Inter_800ExtraBold
   })
 
-  //se a fonte não estiver carregada, irá mostrar o loading
+  //se a fonte não estiver carregada, irá mostrar o loading do Loading.tsx
   if (!fontsLoaded) {
     return (
       <Loading />
@@ -20,10 +22,10 @@ export default function App() {
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.texto}>Felipe Lopes</Text>
+    <>
+      <Home />
       <StatusBar barStyle="light-content" backgroundColor="transparent" translucent/>
-    </View>
+    </>
   );
 }
 

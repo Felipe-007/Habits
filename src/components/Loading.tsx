@@ -1,3 +1,4 @@
+//icone de carregamento
 import { View, ActivityIndicator } from "react-native";
 
 export function Loading(){

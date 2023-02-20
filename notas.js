@@ -9,5 +9,11 @@
  * 
  * npm install dayjs  //define o portugues como padrão
  * 
+ * navegação
+ * expo install @react-navigation/native
+ * expo install react-native-screens react-native-safe-area-context
+ * expo install @react-navigation/native-stack
+ * 
  * https://github.com/Luhmeiy/Habits
+ * 143
  */

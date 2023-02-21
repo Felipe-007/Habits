@@ -3,6 +3,7 @@ import { View, Text, ScrollView } from "react-native";
 import { Header } from "../components/Header";
 import { HabtiDay, DAY_SIZE } from "../components/HabtiDay";  //HabtiDay são os quadrados
 import generateRangeDatesFromYearStart from "../utils/generate-range-between-dates";  //gera o intervalo de datas, contando a partir do primeiro dia do ano ate hoje
+import { useNavigation } from "@react-navigation/native";
 
 const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];  //dias da semana
 const datesFromYearStart = generateRangeDatesFromYearStart();  //dias gerados
@@ -10,6 +11,9 @@ const minimumSummaryDatesSizes = 18 * 5;
 const amountOfDaysToFill = minimumSummaryDatesSizes - datesFromYearStart.length
 
 export function Home() {
+
+  const { navigate } = useNavigation();
+
   return (
     <View className="flex-1 bg-background px-8 pt-16">
       <Header />
@@ -39,6 +43,7 @@ export function Home() {
             datesFromYearStart.map(date => (
               <HabtiDay
                 key={date.toISOString()}
+                onPress={() => navigate('habit', { date: date.toISOString() })}  //onPress vem da config do extends TouchableOpacityProps, quando pressionado irá para a tela habit levando os valores de date
               />
             ))
           }

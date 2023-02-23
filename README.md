@@ -31,14 +31,45 @@ Esse projeto foi feito durante a NLW Setup da Rocketseat na trilha Ignite, em su
 
 ## 🔖 Executando o projeto
 
-Utilize o **yarn** ou o **npm install** para instalar as dependências do projeto.
-Em seguida, inicie o projeto.
-
-```cl
+```bash
 git clone https://github.com/Felipe-007/Habits.git
-cd Habits
+```
+
+## Server
+```bash
+# Acesse a pasta server
+cd Habits/server
+# Instale as dependências
 npm i
-expo start
+# Crie um arquivo .env em `/Habits/server/.env` e cole o seguinte código:
+DATABASE_URL="file:./dev.db"
+# Com o arquivo .env criado na raiz do `server` rode o seguinte comando:
+npx prisma migrate dev
+# Rode o servidor:
+npm run dev
+# O servidor será inicializado no <http://localhost:3333>
+```
+
+## Web
+```bash
+# Acesse a pasta web
+$ cd Habits/web
+# Instale as dependências
+$ npm i
+# Execute o projeto web:
+npm run dev
+# A web será inicializada no <http://localhost:5173>
+```
+
+## Mobile
+```bash
+# Acesse a pasta mobile
+$ cd Habits/mobile
+# Instale as dependências
+$ npm i
+# Execute o projeto mobile:
+$ npx expo start --clear
+# Acesse o arquivo axios.ts, disponível em `Habits\mobile\src\lib` e altere de acordo com o seu IP e porta do servidor
 ```
 
 ## 📄 Licença

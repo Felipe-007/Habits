@@ -15,5 +15,9 @@
  * expo install @react-navigation/native-stack
  * 
  * https://github.com/Luhmeiy/Habits
- * 143
+ * 
+ * exemplo
+ * https://github.com/Luhmeiy/Habits#-about
+ * 
+ * 115
  */

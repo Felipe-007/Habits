@@ -53,9 +53,9 @@ npm run dev
 ## Web
 ```bash
 # Acesse a pasta web
-$ cd Habits/web
+cd Habits/web
 # Instale as dependências
-$ npm i
+npm i
 # Execute o projeto web:
 npm run dev
 # A web será inicializada no <http://localhost:5173>
@@ -64,11 +64,11 @@ npm run dev
 ## Mobile
 ```bash
 # Acesse a pasta mobile
-$ cd Habits/mobile
+cd Habits/mobile
 # Instale as dependências
-$ npm i
+npm i
 # Execute o projeto mobile:
-$ npx expo start --clear
+npx expo start --clear
 # Acesse o arquivo axios.ts, disponível em `Habits\mobile\src\lib` e altere de acordo com o seu IP e porta do servidor
 ```
 

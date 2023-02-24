@@ -21,11 +21,11 @@ type SummaryProps = Array<{
   completed: number;
 }>
 
-export function Home() {  
+export function Home() {
 
   const [loading, setLoading] = useState(true);
   const [summary, setSummary] = useState<SummaryProps | null>(null)  //ou ele é SummaryProps ou ele é nulo
-  const { navigate } = useNavigation();  
+  const { navigate } = useNavigation();
 
   //busca os dados no banco
   async function fetchData() {
@@ -85,8 +85,11 @@ export function Home() {
                   return dayjs(date).isSame(day.date, 'day')
                 })
                 return (
-                  <HabtiDay
+                  <HabtiDay  //pega as propriedades do component/HabtiDay.tsx
+                    date={date}
                     key={date.toISOString()}
+                    amountOfHabits={dayWithHabits?.amount}
+                    amountCompleted={dayWithHabits?.completed}
                     onPress={() => navigate('habit', { date: date.toISOString() })}  //onPress vem da config do extends TouchableOpacityProps, quando pressionado irá para a tela habit levando os valores de date
                   />
                 )

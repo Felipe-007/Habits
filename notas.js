@@ -14,6 +14,8 @@
  * expo install react-native-screens react-native-safe-area-context
  * expo install @react-navigation/native-stack
  * 
+ * npm install --save clsx
+ * 
  * https://github.com/Luhmeiy/Habits
  * 
  * exemplo

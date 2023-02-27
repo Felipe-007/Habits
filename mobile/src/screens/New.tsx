@@ -27,7 +27,7 @@ export function New() {
   async function handleCreateNewHabit() {
     try {
       if (!title.trim() || weekDays.length === 0) {  //se o titulo for vazio ou não selecionar o dia, cai aqui, .trim() não conta os espaços vazios
-        Alert.alert('Novo hábito', 'Informe o nome do novo hábito.')
+        return Alert.alert('Novo hábito', 'Informe o nome do novo hábito.')
       }
 
       await api.post('/habits', { title, weekDays });  //envia as informações para o backend

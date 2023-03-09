@@ -1,10 +1,10 @@
 //tela principal
-import { useState, useEffect } from "react";
+import { useCallback, useState } from 'react';
 import { View, Text, ScrollView, Alert } from "react-native";
 import { Header } from "../components/Header";
-import { HabtiDay, DAY_SIZE } from "../components/HabtiDay";  //HabtiDay são os quadrados
+import { HabitDay, DAY_SIZE } from "../components/HabitDay";  //HabtiDay são os quadrados
 import generateRangeDatesFromYearStart from "../utils/generate-range-between-dates";  //gera o intervalo de datas, contando a partir do primeiro dia do ano ate hoje
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from '@react-navigation/native'; //useFocusEffect chama a interface focus quando chamada novamente
 import { api } from "../lib/axios";  //conexão com o servidor
 import { Loading } from "../components/Loading";
 import dayjs from "dayjs";
@@ -42,9 +42,9 @@ export function Home() {
   }
 
   //monta o fetchData assim que o aplicativo abrir
-  useEffect(() => {
-    fetchData();
-  }, []);
+  useFocusEffect(useCallback(() => {
+    fetchData()
+  }, []))
 
   if (loading) {  //se o loading do banco demorar(const [loading] ), irá mostar o componente de Loading
     return (
@@ -85,7 +85,7 @@ export function Home() {
                   return dayjs(date).isSame(day.date, 'day')
                 })
                 return (
-                  <HabtiDay  //pega as propriedades do component/HabtiDay.tsx
+                  <HabitDay  //pega as propriedades do component/HabtiDay.tsx
                     date={date}
                     key={date.toISOString()}
                     amountOfHabits={dayWithHabits?.amount}

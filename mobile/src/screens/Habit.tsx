@@ -9,7 +9,7 @@ import { Checkbox } from "../components/Checkbox";
 import { Loading } from "../components/Loading";
 import { api } from "../lib/axios";
 import { generateProgressPercentage } from "../utils/generate-progress-percentage";  //calculo do progresso
-import { HabitEmpty } from "../components/HabitEmpty";  //caso não exista nenhum hábito, hábito vazio
+import { HabitsEmpty } from "../components/HabitsEmpty";  //caso não exista nenhum hábito, hábito vazio
 import clsx from "clsx";
 
 interface Params {
@@ -59,18 +59,25 @@ export function Habit() {
   }
 
   //verifica se esta marcado ou nao
-  async function handleToggleHabit(habitId: string) {
-    if (completedHabits.includes(habitId)) {
-      setCompletedHabits(prevState => prevState.filter(habit => habit !== habitId));
-    } else {
-      setCompletedHabits(prevState => [...prevState, habitId]);
+  async function handleToggleHabits(habitId: string) {
+    try {
+      await api.patch(`/habits/${habitId}/toggle`);  //é acionado no momento em que a pessoa clica, junta texto com o conteudo que esta dentro da variável
+
+      if (completedHabits?.includes(habitId)) {
+        setCompletedHabits(prevState => prevState.filter(habit => habit !== habitId));
+      } else {
+        setCompletedHabits(prevState => [...prevState, habitId]);
+      }
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Ops', 'Não foi possível atualizar o status do hábito.')
     }
   }
 
   //é montado assim que a aplicação abrir
   useEffect(() => {
-    fetchHabits();
-  }, []);
+    fetchHabits()
+  }, [])
 
   //se a os hábitos não estiverem carregados, irá mostrar o loading do Loading.tsx
   if (loading) {
@@ -99,7 +106,7 @@ export function Habit() {
         <ProgressBar progress={habitsProgress} />
 
         <View className={clsx("mt-6", {
-          ["opacity-50"] : isDateInPast
+          ["opacity-50"]: isDateInPast
         })}>
           {
             //verifica se existe hábitos
@@ -110,21 +117,22 @@ export function Habit() {
                   title={habit.title}
                   checked={completedHabits.includes(habit.id)}  //verifica se o hábito esta completado
                   disabled={isDateInPast}  //a data já passou
-                  onPress={() => handleToggleHabit(habit.id)}  ////verifica se esta marcado ou nao
+                  onPress={() => handleToggleHabits(habit.id)}  ////verifica se esta marcado ou nao
                 />
               ))
-              : <HabitEmpty />  //caso não exista nenhum hábito, hábito vazio
-          }
-
-          {
-            //verifica se a data já passou
-            isDateInPast && (
-              <Text className="text-white mt-10 text-center">
-                Você não pode editar hábitos de uma data passada
-              </Text>
-            )
+              : <HabitsEmpty />  //caso não exista nenhum hábito, hábito vazio
           }
         </View>
+
+        {
+          //verifica se a data já passou
+          isDateInPast && (
+            <Text className="text-white mt-10 text-center">
+              Você não pode editar hábitos de uma data passada
+            </Text>
+          )
+        }
+
       </ScrollView>
     </View>
   )

@@ -16,7 +16,7 @@ interface Props extends TouchableOpacityProps {
   date: Date;
 };
 
-export function HabtiDay({ amountOfHabits = 0, amountCompleted = 0, date, ...rest }: Props) {  //HabtiDay são os quadrados, ...rest pega todas as propriedades do TouchableOpacityProps
+export function HabitDay({ amountOfHabits = 0, amountCompleted = 0, date, ...rest }: Props) {  //HabtiDay são os quadrados, ...rest pega todas as propriedades do TouchableOpacityProps
 
   const amountAccomplishedPercentage = amountOfHabits > 0 ? generateProgressPercentage(amountOfHabits, amountCompleted) : 0;  //se amountOfHabits for maior que 0 calcula a porcentagem, se nao devolve o valor 0
   const today = dayjs().startOf('day').toDate();  //pega o inicio do dia e converte ele para uma data

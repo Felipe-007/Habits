@@ -15,6 +15,7 @@
  * expo install @react-navigation/native-stack
  * 
  * npm install --save clsx
+ * npx expo install react-native-reanimated  //animações, adicionar tbem no babel.config.js
  * 
  * https://github.com/Luhmeiy/Habits
  * 

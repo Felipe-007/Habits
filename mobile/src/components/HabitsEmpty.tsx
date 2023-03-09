@@ -2,7 +2,7 @@
 import { useNavigation } from "@react-navigation/native";
 import { Text } from "react-native";
 
-export function HabitEmpty() {
+export function HabitsEmpty() {
 
   const { navigate } = useNavigation();
 
